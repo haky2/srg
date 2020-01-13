@@ -1,0 +1,3 @@
+rootProject.name = 'srg'
+include 'web.front', 'web.api', 'web.common'
+
