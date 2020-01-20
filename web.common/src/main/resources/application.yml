@@ -3,7 +3,7 @@ spring:
     active: local # 기본 환경 선택
 ---
 server:
-  port: 5080
+  port: 5070
 
 spring:
   profiles: local
@@ -12,9 +12,9 @@ spring:
       enabled: false
   jpa:
     hibernate:
-      ddl-auto : update
+      ddl-auto : create  # 스키마 생성 된 후에 update or none으로 변경 필요
   datasource:
-    url: jdbc:mysql://localhost:3306/srg?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/godo_project?serverTimezone=UTC
     username: root
     password: a90a1027a
     driver-class-name: com.mysql.cj.jdbc.Driver
