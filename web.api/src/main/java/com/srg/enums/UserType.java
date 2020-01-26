@@ -1,5 +1,8 @@
 package com.srg.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum UserType {
     NOMAL("NORMAL", 1),
     NAVER("NAVER", 2),

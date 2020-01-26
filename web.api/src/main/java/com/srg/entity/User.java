@@ -3,13 +3,23 @@ package com.srg.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.srg.enums.UserGrade;
 import com.srg.enums.UserType;
-import lombok.Getter;
-import lombok.Setter;
+
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "user")

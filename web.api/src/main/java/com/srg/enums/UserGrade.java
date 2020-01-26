@@ -1,5 +1,8 @@
 package com.srg.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum UserGrade {
     OWNER("OWNER", 1),
     ADMIN("ADMIN", 2),
