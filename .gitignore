@@ -5,6 +5,7 @@ gradle/
 .idea/
 querydsl/
 out/
+**/test/
 
 gradlew
 gradlew.bat
