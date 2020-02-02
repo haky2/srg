@@ -21,6 +21,7 @@ dependencies {
     runtimeOnly 'mysql:mysql-connector-java'
     implementation 'com.querydsl:querydsl-jpa'
     implementation 'com.querydsl:querydsl-apt'
+    compile 'org.json:json:20190722'
 }
 
 def querydslSrcDir = 'src/querydsl/java'
