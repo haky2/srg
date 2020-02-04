@@ -18,6 +18,9 @@ import java.time.LocalDateTime;
 @Builder
 public class Restaurant {
 
+    private Restaurant() {
+    }
+
     // 음식점 번호
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

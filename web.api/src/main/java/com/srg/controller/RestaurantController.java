@@ -1,5 +1,6 @@
 package com.srg.controller;
 
+import com.srg.entity.Restaurant;
 import com.srg.service.RestaurantService;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,11 +18,13 @@ public class RestaurantController {
     private RestaurantService service;
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
-    public void get(@PathVariable(value="id") String id, HttpServletResponse response) throws JSONException {
+    public void get(@PathVariable(value="id") int id, HttpServletResponse response) throws JSONException {
         JSONObject data = new JSONObject();
-        data.put("id", "RST" + id);
-        data.put("name", "Starbucks");
-        data.put("address", "Seoul");
+        data.put("id", service.get(id).getRstNo());
+        data.put("name", service.get(id).getRstName());
+        data.put("menu", service.get(id).getRstMenu());
+        data.put("tag", service.get(id).getRstTag());
+        data.put("regDate", service.get(id).getRegYmdt());
         JSONObject result = new JSONObject();
         result.put("response", data);
         try {
@@ -32,7 +35,12 @@ public class RestaurantController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/save")
-    public void save() {
-        service.add();
+    public void add(Restaurant restaurant) {
+        service.add(restaurant);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/save/{id}")
+    public void modify(@PathVariable(value="id") int id) {
+        service.modify(id);
     }
 }
