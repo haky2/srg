@@ -11,7 +11,6 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("/restaurant")
-@CrossOrigin(origins = "http://localhost:3000")
 public class RestaurantController {
 
     @Autowired
@@ -20,8 +19,8 @@ public class RestaurantController {
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public void get(@PathVariable(value="id") String id, HttpServletResponse response) throws JSONException {
         JSONObject data = new JSONObject();
-        data.put("restaurant id", id);
-        data.put("name", "얌샘김밥");
+        data.put("id", "RST" + id);
+        data.put("name", "Starbucks");
         data.put("address", "Seoul");
         JSONObject result = new JSONObject();
         result.put("response", data);
