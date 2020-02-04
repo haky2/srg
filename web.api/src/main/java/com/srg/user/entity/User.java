@@ -1,9 +1,11 @@
-package com.srg.entity;
+package com.srg.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.srg.enums.UserGrade;
-import com.srg.enums.UserType;
+import com.srg.user.enums.UserGrade;
+import com.srg.user.enums.UserType;
+import com.srg.user.model.UserRegisterRequest;
 
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDateTime;
@@ -19,19 +21,21 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "user")
 @Getter
 @Setter
+@NoArgsConstructor
 public class User {
 
     // 회원번호
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_no")
-    private int userNo;
+    private long userNo;
 
     // 회원아이디
     @NotNull
@@ -79,6 +83,11 @@ public class User {
     // 닉네임
     private String nickname;
 
+    // 삭제여부
+    @Type(type = "yes_no")
+    @Column(name = "deleted_yn")
+    private boolean deleted;
+
     // 가입시각
     @NotNull
     private LocalDateTime joinYmdt = LocalDateTime.now();
@@ -92,4 +101,16 @@ public class User {
     // 최종 등급 수정일
     private LocalDateTime lastGradeUpdateYmdt;
 
+    public User(UserRegisterRequest request) {
+        this.userId = request.getUserId();
+        this.password = request.getPassword();
+        this.userName = request.getUserName();
+        this.mobileNo = request.getMobileNo();
+        this.userType = request.getUserType() != null ? request.getUserType() : UserType.NOMAL;
+        this.birthday = request.getBirthday();
+        this.sex = request.getSex();
+        this.email = request.getEmail();
+        this.address = request.getAddress();
+        this.nickname = request.getNickname();
+    }
 }
