@@ -3,14 +3,14 @@ import VueRouter from 'vue-router'
 import App from "./App";
 import HelloWorld from "./components/HelloWorld";
 import Restaurant from "./components/Restaurant";
-import join from "./components/join";
+import Join from "./components/Join";
 
 Vue.use(VueRouter)
 
 const routes = [
   { path: '/', component: HelloWorld },
   { path: '/restaurant', component: Restaurant },
-  { path: '/join', component: join }
+  { path: '/join', component: Join }
 ]
 
 const router = new VueRouter({
