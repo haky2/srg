@@ -1,6 +1,8 @@
 package com.srg.entity;
 
 import com.srg.enums.RestaurantCategory;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,8 +18,10 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor
 public class Restaurant {
 
+    // TODO: 2020/02/05 빌드 오류(builder 관련)로 인해 임시로 @AllArgsConstructor 사용
     private Restaurant() {
     }
 

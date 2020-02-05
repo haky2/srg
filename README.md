@@ -13,3 +13,12 @@
 ## About Vue.js
 - reference : https://mr-spock.tistory.com/3
 - resolve `gyp` error : https://velog.io/@noyo0123/TIL-19.12.26
+
+## Create Common Mysql User
+```mysql
+# srg 계정 생성
+create user 'srg'@'localhost' identified by 'tmfprl5$#@!';
+
+# 권한 부여
+grant all privileges on *.* to 'srg'@'localhost';
+```
