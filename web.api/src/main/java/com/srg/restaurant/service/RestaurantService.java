@@ -1,7 +1,7 @@
-package com.srg.service;
+package com.srg.restaurant.service;
 
-import com.srg.entity.Restaurant;
-import com.srg.repository.RestaurantRepository;
+import com.srg.restaurant.entity.Restaurant;
+import com.srg.restaurant.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +36,7 @@ public class RestaurantService {
     public void add(Restaurant restaurant) {
         restaurant.setRstName("restaurant002");
         restaurant.setRstTag("#restaurant002");
-        restaurant.setLocationNo(0);
+        restaurant.setLocationNo(2);
         restaurant.setRstMenu("{}");
         restaurant.setStoreHour("10:00 ~ 20:00");
         restaurant.setRegYmdt(LocalDateTime.now());

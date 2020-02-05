@@ -1,6 +1,6 @@
-package com.srg.repository;
+package com.srg.restaurant.repository;
 
-import com.srg.entity.Restaurant;
+import com.srg.restaurant.entity.Restaurant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

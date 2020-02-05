@@ -1,9 +1,6 @@
-package com.srg.entity;
+package com.srg.restaurant.entity;
 
-import com.srg.enums.RestaurantCategory;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import com.srg.restaurant.enums.RestaurantCategory;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
@@ -17,8 +14,6 @@ import java.time.LocalDateTime;
 @Table(name = "restaurant")
 @Getter
 @Setter
-@Builder
-@AllArgsConstructor
 public class Restaurant {
 
     // TODO: 2020/02/05 빌드 오류(builder 관련)로 인해 임시로 @AllArgsConstructor 사용
@@ -32,9 +27,9 @@ public class Restaurant {
     private int rstNo;
 
     // 위치 정보
-    @Column(name = "location_no", nullable = true, columnDefinition = "int(11) unsigned")
+    @Column(name = "location_no", nullable = true, columnDefinition = "int(11) unsigned default 0")
     @ColumnDefault("0")
-    private Integer locationNo;
+    private long locationNo;
 
     // 상호명
     @Column(name = "rst_name", nullable = false)

@@ -1,4 +1,4 @@
-package com.srg.entity;
+package com.srg.restaurant.entity;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package com.srg.enums;
+package com.srg.restaurant.enums;
 
 import lombok.Getter;
 

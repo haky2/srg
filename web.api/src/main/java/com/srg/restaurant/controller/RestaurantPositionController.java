@@ -1,6 +1,6 @@
-package com.srg.controller;
+package com.srg.restaurant.controller;
 
-import com.srg.service.RestaurantService;
+import com.srg.restaurant.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

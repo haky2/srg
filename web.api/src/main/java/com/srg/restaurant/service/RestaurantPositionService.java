@@ -1,7 +1,7 @@
-package com.srg.service;
+package com.srg.restaurant.service;
 
-import com.srg.entity.RestaurantPosition;
-import com.srg.repository.RestaurantPositionRepository;
+import com.srg.restaurant.entity.RestaurantPosition;
+import com.srg.restaurant.repository.RestaurantPositionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

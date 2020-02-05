@@ -1,7 +1,7 @@
-package com.srg.controller;
+package com.srg.restaurant.controller;
 
-import com.srg.entity.Restaurant;
-import com.srg.service.RestaurantService;
+import com.srg.restaurant.entity.Restaurant;
+import com.srg.restaurant.service.RestaurantService;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
