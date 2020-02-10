@@ -103,14 +103,16 @@ public class User {
 
     public User(UserRegisterRequest request) {
         this.userId = request.getUserId();
+        this.userGrade = UserGrade.NORMAL;
         this.password = request.getPassword();
         this.userName = request.getUserName();
         this.mobileNo = request.getMobileNo();
-        this.userType = request.getUserType() != null ? request.getUserType() : UserType.NOMAL;
+        this.userType = UserType.NORMAL;
         this.birthday = request.getBirthday();
         this.sex = request.getSex();
         this.email = request.getEmail();
         this.address = request.getAddress();
         this.nickname = request.getNickname();
+        this.deleted = false;
     }
 }

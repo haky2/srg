@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum UserType {
-    NOMAL("NORMAL", 1),
+    NORMAL("NORMAL", 1),
     NAVER("NAVER", 2),
     KAKAO("KAKAO", 3),
     PAYCO("PAYCO", 4);

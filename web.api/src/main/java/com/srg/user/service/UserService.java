@@ -20,8 +20,6 @@ public class UserService {
     @Transactional
     public void registerUser(UserRegisterRequest request) {
         User user = new User(request);
-        user.setUserGrade(UserGrade.NORMAL);
-        user.setDeleted(false);
         userRepository.save(user);
     }
 

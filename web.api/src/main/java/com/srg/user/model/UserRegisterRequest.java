@@ -30,8 +30,8 @@ public class UserRegisterRequest {
     private String mobileNo;
 
     // 회원유형
-    @NotNull
-    private UserType userType;
+//    @NotNull
+//    private UserType userType;
 
     // 생년월일
     private String birthday;

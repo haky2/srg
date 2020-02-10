@@ -13,6 +13,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto : update
+    show-sql: true
   datasource:
     url: jdbc:mysql://localhost:3306/srg?serverTimezone=UTC
     username: srg
