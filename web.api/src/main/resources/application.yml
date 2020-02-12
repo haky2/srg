@@ -19,3 +19,7 @@ spring:
     username: srg
     password: tmfprl5$#@!
     driver-class-name: com.mysql.cj.jdbc.Driver
+  thymeleaf:
+    prefix: classpath:/static/
+    cache: false
+    mode: LEGACYHTML5

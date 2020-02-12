@@ -8,14 +8,12 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import lombok.RequiredArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-// TODO: 2020/02/10 passwordencoder, vue 연동부분 확인 
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     UserService userService;
@@ -27,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring()
            .antMatchers("/static/**")
            .antMatchers("*.ico")
-           .antMatchers("/login");
+        ;
     }
 
     @Override
@@ -35,23 +33,34 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable();
 
-        http.authorizeRequests()
-            .antMatchers("/user/**").access("ROLE_USER")
-            .antMatchers("/login").permitAll()
-            .antMatchers("/**").authenticated();
+        // TODO: 2020/02/13 passwordEncoder 추가 확인
+        http
+            .authorizeRequests()
+                .antMatchers(
+                    "/index",
+                    "/login", "/user/**",
+                    "/restaurant/**", "/restaurantPosition/**"
+                )
+                .permitAll()
+                .antMatchers("/mypage").access("ROLE_USER")
+//                .anyRequest().authenticated()
+                .anyRequest().permitAll()
+                .and()
 
-        http.formLogin()
-            .loginPage("/login")
-            .defaultSuccessUrl("/home")
-            .usernameParameter("id")
-            .passwordParameter("password");
+            .formLogin()
+                .defaultSuccessUrl("/mypage")
+                .failureUrl("/login")
+                .usernameParameter("id")
+                .passwordParameter("password")
+                .and()
 
-        http.logout()
-            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-            .logoutSuccessUrl("/")
-            .invalidateHttpSession(true);
+            .logout()
+                .logoutSuccessUrl("/index")
+                .invalidateHttpSession(true)
+                .and()
 
-        http.authenticationProvider(authProvider);
+            .authenticationProvider(authProvider)
 
+        ;
     }
 }

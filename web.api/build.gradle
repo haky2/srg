@@ -1,3 +1,41 @@
+/*
+ * npm 빌드 추가 확인
+plugins {
+    id "com.moowork.node" version "1.2.0"
+}
+
+node {
+    version = '9.3.0'
+    npmVersion = '5.8.0'
+    download = true
+}
+
+task npmBuild(type: NpmTask) {
+    args = ['run', 'build']
+}
+
+task npmClean(type: Delete) {
+    delete 'main/resources/static'
+}
+
+npmBuild.dependsOn(npmInstall)
+
+task resourcesCopy(dependsOn: ':web.front.vue:npmBuild') {
+    doLast {
+        // copy template
+        copy {
+            from '../web.front/src/main/resources/index.html'
+            into 'main/resources/static/templates'
+        }
+        // copy static
+        copy {
+            from '../web.front/src/main/resources/static'
+            into 'main/resources/static'
+        }
+    }
+}
+*/
+
 bootJar{
     enabled = false;
 }
@@ -9,12 +47,20 @@ ext {
     springfoxVersion = '2.9.2'
 }
 
+repositories {
+    mavenCentral()
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
+}
+
 apply plugin: 'com.ewerk.gradle.plugins.querydsl'
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation "io.springfox:springfox-swagger2:${springfoxVersion}"
     implementation "io.springfox:springfox-swagger-ui:${springfoxVersion}"
     runtimeOnly 'com.h2database:h2'
