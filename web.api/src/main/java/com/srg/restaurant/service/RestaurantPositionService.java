@@ -15,7 +15,7 @@ public class RestaurantPositionService {
     private RestaurantPositionRepository restaurantPositionRepository;
 
     public RestaurantPosition findById(long rstNo) {
-        RestaurantPosition restaurantPosition = restaurantPositionRepository.findById(rstNo);
+        RestaurantPosition restaurantPosition = restaurantPositionRepository.findByRstNo(rstNo);
         return restaurantPosition;
     }
 
@@ -30,7 +30,7 @@ public class RestaurantPositionService {
     }
 
     public void updateById(long rstNo, RestaurantPosition restaurantPosition) {
-        RestaurantPosition updateData = restaurantPositionRepository.findById(rstNo);
+        RestaurantPosition updateData = restaurantPositionRepository.findByRstNo(rstNo);
         LocalDateTime currentDateTime = LocalDateTime.now();
 
         updateData.setResCoordinate(restaurantPosition.getResCoordinate());

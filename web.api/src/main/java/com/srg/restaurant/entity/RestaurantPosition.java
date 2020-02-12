@@ -17,7 +17,7 @@ public class RestaurantPosition {
     // 맛집 고유 번호
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "rst_name")
+    @Column(name = "rst_no")
     private long rstNo;
 
     // 맛집 좌표
