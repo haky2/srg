@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable();
 
-        // TODO: 2020/02/13 passwordEncoder 추가 확인
+        // TODO: 2020/02/13 passwordEncoder, AuthenticationManagerBuilder, success/failure handler
         http
             .authorizeRequests()
                 .antMatchers(
