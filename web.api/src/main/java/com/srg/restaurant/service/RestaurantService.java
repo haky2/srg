@@ -13,32 +13,18 @@ public class RestaurantService {
     @Autowired
     private RestaurantRepository restaurantRepository;
 
-    public Restaurant get(int id) {
-        Optional<Restaurant> optionalRestaurant = restaurantRepository.findById(id);
-        if (optionalRestaurant.isPresent()) {
-            System.out.println(optionalRestaurant.get());
-            return optionalRestaurant.get();
-        } else {
-            return null;
-        }
+    public Optional<Restaurant> get(Long id) {
+        Optional<Restaurant> restaurant = restaurantRepository.findById(id);
+        return restaurant;
     }
 
-    public void modify(int id) {
-        Optional<Restaurant> optionalRestaurant = restaurantRepository.findById(id);
-        Restaurant restaurant = optionalRestaurant.get();
-        restaurant.setRstName("changeName");
-        restaurant.setRstTag("#changeTag1#changeTag2");
-        restaurant.setRegYmdt(LocalDateTime.now());
+    public void modify(Restaurant restaurant) {
         restaurant.setLastUpdateYmdt(LocalDateTime.now());
         restaurantRepository.save(restaurant);
     }
 
     public void add(Restaurant restaurant) {
-        restaurant.setRstName("restaurant002");
-        restaurant.setRstTag("#restaurant002");
-        restaurant.setLocationNo(2);
-        restaurant.setRstMenu("{}");
-        restaurant.setStoreHour("10:00 ~ 20:00");
+        restaurant.setLocationNo(0);
         restaurant.setRegYmdt(LocalDateTime.now());
         restaurantRepository.save(restaurant);
     }

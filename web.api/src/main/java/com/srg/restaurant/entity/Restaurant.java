@@ -17,14 +17,15 @@ import java.time.LocalDateTime;
 public class Restaurant {
 
     // TODO: 2020/02/05 빌드 오류(builder 관련)로 인해 임시로 @AllArgsConstructor 사용
-    private Restaurant() {
+    public Restaurant() {
+
     }
 
     // 음식점 번호
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "rst_no", columnDefinition = "int(11) unsigned")
-    private int rstNo;
+    private long rstNo;
 
     // 위치 정보
     @Column(name = "location_no", nullable = true, columnDefinition = "int(11) unsigned default 0")
