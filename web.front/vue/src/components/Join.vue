@@ -52,7 +52,6 @@
 </template>
 
 <script>
-    import axios from 'axios'
     export default {
         name: "join",
         data() {
@@ -81,7 +80,7 @@
                     birthday: this.birthday,
                     sex: this.sex
                 }
-                axios.post('/api/users', data)
+                this.$axios.post('/api/users', data)
                     .then(res => {
                         // eslint-disable-next-line no-console
                         console.log(res);
