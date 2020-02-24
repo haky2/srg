@@ -104,7 +104,6 @@ public class User {
     public User(UserRegisterRequest request) {
         this.userId = request.getUserId();
         this.userGrade = UserGrade.NORMAL;
-        this.password = request.getPassword();
         this.userName = request.getUserName();
         this.mobileNo = request.getMobileNo();
         this.userType = UserType.NORMAL;
