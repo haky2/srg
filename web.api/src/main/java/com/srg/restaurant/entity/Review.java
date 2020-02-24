@@ -16,22 +16,22 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "reviews")
-public class Reviews {
+@Table(name = "review")
+public class Review {
     // 리뷰 번호
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_no", columnDefinition = "int(11) unsigned")
     private int reviewNo;
 
-    // 회원 번호
+    // 회원 번호 (수정 불가)
     @NotNull
-    @Column(nullable = false, columnDefinition = "int(11) unsigned")
+    @Column(nullable = false, columnDefinition = "int(11) unsigned", updatable = false)
     private int userNo;
 
-    // 식당 번호
+    // 식당 번호 (수정 불가)
     @NotNull
-    @Column(nullable = false, columnDefinition = "int(11) unsigned")
+    @Column(nullable = false, columnDefinition = "int(11) unsigned", updatable = false)
     private int resNo;
     // 별점 (부동소수점 오차 회피 위해 정수 타입 사용)
     @NotNull
@@ -48,16 +48,16 @@ public class Reviews {
     private String content;
     // 첨부파일
     private String attachment;
-    // 작성일
+    // 작성일 (수정 불가)
     @CreationTimestamp
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     private LocalDateTime writtenYmdt;
     // 마지막 수정일
     @UpdateTimestamp
     private LocalDateTime updatedYmdt;
 
     @Builder
-    public Reviews(int userNo, int resNo, int score, String title, String content, String attachment) {
+    public Review(int userNo, int resNo, int score, String title, String content, String attachment) {
         this.userNo = userNo;
         this.resNo = resNo;
         this.score = score;
