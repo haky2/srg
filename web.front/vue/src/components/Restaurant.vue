@@ -67,20 +67,26 @@ export default {
     saveData() {
         var form = document.getElementById('saveForm');
         var formData = new FormData(form);
-        axios
-            .post('/api/restaurant/save', formData)
+        axios({
+            method : 'post',
+            url:'/api/restaurant/save',
+            headers : {'Content-Type' : 'application/json'},
+            data : formData
+            })
             .then(function(res){
                 if (res.data == "success") {
                     alert("신규 맛집을 추가했습니다.");
                 } else {
                     alert(res.data);
                 }
+            }).catch(function(err1){
+                alert(err1);
             });
     }
   },
   mounted() {
       axios
-          .get('/api/restaurant/categoryList')
+          .get('/api/restaurant/categories')
           .then(res => {
               this.categories = res.data;
           });

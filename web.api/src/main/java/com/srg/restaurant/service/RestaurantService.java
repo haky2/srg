@@ -1,6 +1,7 @@
 package com.srg.restaurant.service;
 
 import com.srg.restaurant.entity.Restaurant;
+import com.srg.restaurant.model.request.RestaurantRegister;
 import com.srg.restaurant.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,14 @@ public class RestaurantService {
         restaurantRepository.save(restaurant);
     }
 
-    public void add(Restaurant restaurant) {
+    public void add(RestaurantRegister restaurantRegister) {
+        Restaurant restaurant = new Restaurant();
         restaurant.setLocationNo(0);
+        restaurant.setRstTag(restaurantRegister.getRstTag());
+        restaurant.setRstCategory(restaurantRegister.getRstCategory());
+        restaurant.setRstName(restaurantRegister.getRstName());
+        restaurant.setRstMenu(restaurantRegister.getRstMenu());
+        restaurant.setStoreHour(restaurantRegister.getStoreHour());
         restaurant.setRegYmdt(LocalDateTime.now());
         restaurantRepository.save(restaurant);
     }
