@@ -16,26 +16,26 @@ public class RestaurantPositionController {
     @Autowired
     private RestaurantPositionService restaurantPositionService;
 
-    @RequestMapping(value = "/restaurantPosition", method = RequestMethod.POST)
+    @RequestMapping(value = "/restaurant-position", method = RequestMethod.POST)
     public String addRestaurantPosition(RestaurantPosition addRestaurantPosition) {
         restaurantPositionService.save(addRestaurantPosition);
         return "add Complete";
     }
 
-    @RequestMapping(value = "/restaurantPosition/{id}", method = RequestMethod.GET)
-    public RestaurantPosition getRestaurantPosition(@PathVariable("id") long rstNo) {
+    @RequestMapping(value = "/restaurant-position/{rst_no}", method = RequestMethod.GET)
+    public RestaurantPosition getRestaurantPosition(@PathVariable("rst_no") long rstNo) {
         RestaurantPosition ReturnRestaurantPosition = new RestaurantPosition();
         ReturnRestaurantPosition = restaurantPositionService.findById(rstNo);
         return ReturnRestaurantPosition;
     }
 
-    @RequestMapping(value = "/restaurantPosition/{id}", method = RequestMethod.DELETE)
-    public void deleteRestaurantPosition(@PathVariable("id") long rstNo) {
+    @RequestMapping(value = "/restaurant-position/{rst_no}", method = RequestMethod.DELETE)
+    public void deleteRestaurantPosition(@PathVariable("rst_no") long rstNo) {
         restaurantPositionService.deleteById(rstNo);
     }
 
-    @RequestMapping(value = "/restaurantPosition/{id}", method = RequestMethod.PUT)
-    public String modifyRestaurantPosition(@PathVariable("id") long rstNo, RestaurantPosition updateRestaurantPosition) {
+    @RequestMapping(value = "/restaurant-position/{rst_no}", method = RequestMethod.PUT)
+    public String modifyRestaurantPosition(@PathVariable("rst_no") long rstNo, RestaurantPosition updateRestaurantPosition) {
         restaurantPositionService.updateById(rstNo,updateRestaurantPosition);
         return "modify Complete";
     }
