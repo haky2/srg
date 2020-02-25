@@ -3,7 +3,7 @@
     <img alt="Vue logo" src="./assets/logo.png">
     <router-link to="/">Home   </router-link>
     <router-link to="/join">회원가입   </router-link>
-    <router-link to="/restaurant">맛집   </router-link>
+    <router-link to="/restaurant/list">맛집   </router-link>
     <router-link to="/restaurant_position">맛집 지도   </router-link>
     <router-view></router-view>
   </div>

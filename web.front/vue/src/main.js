@@ -3,7 +3,8 @@ import VueRouter from 'vue-router'
 import App from "./App"
 import axios from "axios"
 import HelloWorld from "./components/HelloWorld";
-import Restaurant from "./components/Restaurant";
+import Restaurant from "./components/Restaurant/List";
+import RestaurantRegister from "./components/Restaurant/Register"
 import Join from "./components/Join";
 import RestaurantPosition from "./components/RestaurantPosition";
 
@@ -12,7 +13,8 @@ Vue.prototype.$axios = axios;
 
 const routes = [
   { path: '/', component: HelloWorld },
-  { path: '/restaurant', component: Restaurant },
+  { path: '/restaurant/list', component: Restaurant },
+  { path: '/restaurant/register', component: RestaurantRegister },
   { path: '/join', component: Join },
   { path: '/restaurant_position', component: RestaurantPosition  }
 ]

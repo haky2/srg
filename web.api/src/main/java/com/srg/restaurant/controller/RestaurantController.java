@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +30,12 @@ public class RestaurantController {
         return ResponseEntity.ok("success");
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/list", produces="application/json;charset=UTF-8")
+    public ResponseEntity<List<Restaurant>> getList() {
+        List<Restaurant> data = service.getList();
+        return ResponseEntity.ok(data);
+    }
+
     @RequestMapping(method = RequestMethod.GET, value = "/{id}", produces="application/json;charset=UTF-8")
     public ResponseEntity<Optional<Restaurant>> get(@PathVariable(value="id") Long id) {
         Optional<Restaurant> data = service.get(id);
@@ -39,47 +44,40 @@ public class RestaurantController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/save")
     public ResponseEntity<String> add(@Valid RestaurantRegister restaurant, BindingResult result) {
-        /*try {
-            if (restaurant.getRstName().isEmpty()) {
-                throw new Exception("가게 이름을 입력해주세요.");
-            }
-            if (restaurant.getStoreHour().isEmpty()) {
-                throw new Exception("영업 시간을 입력해주세요.");
-            }
-            if (restaurant.getRstTag().isEmpty()) {
-                throw new Exception("검색 태그를 입력해주세요.");
-            }
-            service.add(restaurant);
-            return ResponseEntity.ok("success");
-        } catch (Exception e) {
-            return ResponseEntity.ok(e.getMessage());
-        }*/
-
         if (result.hasErrors()) {
             List<ObjectError> allErrors = result.getAllErrors();
-            List<FieldError> fieldError = result.getFieldErrors();
             if (allErrors.size() > 0) {
-                String message = "[" + fieldError.get(0).getDefaultMessage() + "] " + allErrors.get(0).getDefaultMessage();
-                ResponseEntity<String> entity = new ResponseEntity<String>(message, HttpStatus.OK);
+                String message = allErrors.get(0).getDefaultMessage();
+                ResponseEntity<String> entity = new ResponseEntity<String>(message, HttpStatus.BAD_REQUEST);
                 return entity;
             }
         }
+        restaurant.setLocationNo(0L);
+        service.save(restaurant);
         ResponseEntity<String> entity = new ResponseEntity<String>("success", HttpStatus.OK);
         return entity;
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/{id}/save")
-    public ResponseEntity<String> modify(@PathVariable(value="id") Long id, Restaurant restaurant) {
-        try {
-            Long rstNo = restaurant.getRstNo();
-            if (rstNo.equals(id) == false) {
-                throw new Exception("번호가 일치하지 않습니다.");
+    public ResponseEntity<String> modify(@PathVariable(value="id") Long id, @Valid RestaurantRegister restaurant, BindingResult result) {
+        if (result.hasErrors()) {
+            List<ObjectError> allErrors = result.getAllErrors();
+            if (allErrors.size() > 0) {
+                String message = allErrors.get(0).getDefaultMessage();
+                ResponseEntity<String> entity = new ResponseEntity<String>(message, HttpStatus.BAD_REQUEST);
+                return entity;
             }
-            service.modify(restaurant);
-            return ResponseEntity.ok("success");
-        } catch (Exception e) {
-            return ResponseEntity.ok("fail");
         }
+
+        if (!service.get(id).isPresent()) {
+            ResponseEntity<String> entity = new ResponseEntity<String>("데이터가 존재하지 않습니다.", HttpStatus.BAD_REQUEST);
+            return entity;
+        }
+
+        restaurant.setRstNo(id);
+        service.save(restaurant);
+        ResponseEntity<String> entity = new ResponseEntity<String>("success", HttpStatus.OK);
+        return entity;
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/categories", produces="application/json;charset=UTF-8")

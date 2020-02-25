@@ -18,7 +18,6 @@ public class Restaurant {
 
     // TODO: 2020/02/05 빌드 오류(builder 관련)로 인해 임시로 @AllArgsConstructor 사용
     public Restaurant() {
-
     }
 
     // 음식점 번호
@@ -53,6 +52,10 @@ public class Restaurant {
     @Column(name = "rst_menu", nullable = true, columnDefinition = "TEXT")
     private String rstMenu;
 
+    // 가게 소개
+    @Column(name = "rst_desc", nullable = true, columnDefinition = "TEXT")
+    private String rstDesc;
+
     // 별점 (부동소수점 오차 회피 위해 정수 타입 사용)
     @NotNull
     @Column(nullable = true, columnDefinition = "int(11) unsigned")
@@ -71,5 +74,6 @@ public class Restaurant {
     // 수정일
     @NotNull
     private LocalDateTime lastUpdateYmdt = LocalDateTime.now();
+
 
 }

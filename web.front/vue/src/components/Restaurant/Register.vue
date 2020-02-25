@@ -5,8 +5,8 @@
       <form id="saveForm" name="saveForm">
     <table>
         <tr>
-            <th>가게 이름</th>
-            <td><input type="text" name="rstName" id="rstName" placeholder="가게 이름을 입력해주세요." /></td>
+            <th>상호명</th>
+            <td><input type="text" name="rstName" id="rstName" placeholder="상호명을 입력해주세요." /></td>
         </tr>
         <tr>
             <th>주소</th>
@@ -41,9 +41,9 @@
             </td>
         </tr>
         <tr>
-            <th>가게 소개</th>
+            <th>소개</th>
             <td>
-                <textarea rows="7" style="width:100%;" placeholder="가게를 소개해주세요."></textarea>
+                <textarea id="rstDesc" name="rstDesc" rows="7" style="width:100%;" placeholder="가게를 소개해주세요."></textarea>
             </td>
         </tr>
     </table>
@@ -51,18 +51,23 @@
       </form>
   </div>
 </template>
+
 <script>
 const axios = require('axios');
 export default {
-  name: 'Restaurant',
+  name: 'RestaurantRegister',
   data() {
     return {
-        categories : []
+        categories : {},
+        modalData : {
+            title : 'test'
+        },
     };
 
   },
   methods: {
     getData () {
+
     },
     saveData() {
         var form = document.getElementById('saveForm');
@@ -79,10 +84,17 @@ export default {
                 } else {
                     alert(res.data);
                 }
-            }).catch(function(err1){
-                alert(err1);
+            }).catch(function(error){
+                if (error.response) {
+                    alert(error.response.data);
+                } else if (error.request) {
+                    alert(error.request);
+                } else {
+                    alert(error.message);
+                }
+                return false;
             });
-    }
+        }
   },
   mounted() {
       axios
@@ -90,6 +102,9 @@ export default {
           .then(res => {
               this.categories = res.data;
           });
+
+      this.modalData.title = "";
   }
 }
+
 </script>

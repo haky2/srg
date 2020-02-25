@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,19 +15,22 @@ public class RestaurantService {
     @Autowired
     private RestaurantRepository restaurantRepository;
 
+    public List<Restaurant> getList() {
+        List<Restaurant> restaurant = restaurantRepository.findAll();
+        return restaurant;
+    }
+
     public Optional<Restaurant> get(Long id) {
         Optional<Restaurant> restaurant = restaurantRepository.findById(id);
         return restaurant;
     }
 
-    public void modify(Restaurant restaurant) {
-        restaurant.setLastUpdateYmdt(LocalDateTime.now());
-        restaurantRepository.save(restaurant);
-    }
-
-    public void add(RestaurantRegister restaurantRegister) {
+    public void save(RestaurantRegister restaurantRegister) {
         Restaurant restaurant = new Restaurant();
-        restaurant.setLocationNo(0);
+        if (restaurantRegister.getRstNo() != null && restaurantRegister.getRstNo() > 0) {
+            restaurant.setRstNo(restaurantRegister.getRstNo());
+        }
+        restaurant.setLocationNo(restaurantRegister.getLocationNo());
         restaurant.setRstTag(restaurantRegister.getRstTag());
         restaurant.setRstCategory(restaurantRegister.getRstCategory());
         restaurant.setRstName(restaurantRegister.getRstName());
